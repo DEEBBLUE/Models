@@ -38,6 +38,10 @@ func(ex *Exchange) CreateFromJson(exchange io.ReadCloser) (error){
 	return json.NewDecoder(exchange).Decode(&ex)
 }
 
+func(ex *Exchange) CreateJson() ([]byte,error){
+	return json.Marshal(ex)
+}
+
 func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	var dataIn,dataOut ExchangeData
 	var status ExchangeStatus
