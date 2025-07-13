@@ -1,36 +1,42 @@
 package models
 
 import (
+	"encoding/json"
+	"io"
 
 	"github.com/DEEBBLUE/ExProtos/api/Types"
 )
 
 type(
 	ExchangeStatus struct{
-		Status       string
+		Status       string						`json:"status"`
 	}
 	ExchangeCurrency struct{
-		Currency 		 string
+		Currency 		 string						`json:"curryncy"`
 	}
 	ExchangeData struct{
-		Amount 			 float32	
-		Details 		 string
-		Currency 		 ExchangeCurrency
+		Amount 			 float32					`json:"amount"`
+		Details 		 string						`json:"details"`
+		Currency 		 ExchangeCurrency	`json:"exchnage_currency"`
 	}
 	Exchange struct{
-		ExchangeId 	 int
-		ClientId 	 	 int
-		OperId     	 int
-		TimeStart  	 string
-		TimeEnd 	 	 string
-		Rate       	 float32
+		ExchangeId 	 int 						`json:"exchange_id"`
+		ClientId 	 	 int 						`json:"client_id"`
+		OperId     	 int						`json:"oper_id"`
+		TimeStart  	 string					`json:"time_start"`
+		TimeEnd 	 	 string					`json:"time_end"`
+		Rate       	 float32				`json:"rate"`
 
-		DataIn 		 	 ExchangeData
-		DataOut 		 ExchangeData
+		DataIn 		 	 ExchangeData		`json:"data_in"`
+		DataOut 		 ExchangeData		`json:"data_out"`
 
-		Status 			 ExchangeStatus
+		Status 			 ExchangeStatus `json:"exchnage_status"`
 	}
 )
+
+func(ex *Exchange) CreateFromJson(exchange io.ReadCloser) (error){
+	return json.NewDecoder(exchange).Decode(&ex)
+}
 
 func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	var dataIn,dataOut ExchangeData
