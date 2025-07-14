@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/DEEBBLUE/ExProtos/api/Types"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type(
@@ -55,8 +56,8 @@ func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	ex.ExchangeId = int(exchange.GetExchangeId())
 	ex.ClientId = int(exchange.GetClientId())
 	ex.OperId = int(exchange.GetOperId())
-	ex.TimeStart = exchange.GetTimeStart()
-	ex.TimeEnd = exchange.GetTimeEnd()
+	ex.TimeStart = exchange.GetTimeStart().AsTime()
+	ex.TimeEnd = exchange.GetTimeEnd().AsTime()
 	ex.Rate = exchange.GetRate()
 
 	ex.DataIn = dataIn
@@ -87,8 +88,8 @@ func(ex *Exchange) CreateGRPC() *Types.Exchange{
 		ExchangeId: int32(ex.ExchangeId),		
 		ClientId: int32(ex.ClientId),
 		OperId: int32(ex.OperId),
-		TimeStart: ex.TimeStart,
-		TimeEnd: ex.TimeEnd,
+		TimeStart: timestamppb.New(ex.TimeStart),
+		TimeEnd: timestamppb.New(ex.TimeEnd),
 		Rate: ex.Rate,
 
 		DataIn: ex.DataIn.CreateGRPC(),
