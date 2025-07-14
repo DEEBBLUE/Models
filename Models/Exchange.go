@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"io"
+	"time"
 
 	"github.com/DEEBBLUE/ExProtos/api/Types"
 )
@@ -23,8 +24,8 @@ type(
 		ExchangeId 	 int 						`json:"exchange_id"`
 		ClientId 	 	 int 						`json:"client_id"`
 		OperId     	 int						`json:"oper_id"`
-		TimeStart  	 string					`json:"time_start"`
-		TimeEnd 	 	 string					`json:"time_end"`
+		TimeStart  	 time.Time			`json:"time_start"`
+		TimeEnd 	 	 time.Time			`json:"time_end"`
 		Rate       	 float32				`json:"rate"`
 
 		DataIn 		 	 ExchangeData		`json:"data_in"`
