@@ -1,6 +1,10 @@
 package models
 
-import "github.com/DEEBBLUE/ExProtos/api/Types"
+import (
+	"encoding/json"
+
+	"github.com/DEEBBLUE/ExProtos/api/Types"
+)
 
 type UserHistory struct{
 	History	[]Exchange
@@ -13,4 +17,16 @@ func(hist *UserHistory) CreateGRPC() []*Types.Exchange {
 	}		
 
 	return resHistory
+}
+func(hist *UserHistory) CreateFromGRPC(history []*Types.Exchange){
+	for _,ex := range history{
+		var exchange Exchange
+		exchange.CreateFromGRPC(ex)
+
+		hist.History = append(hist.History, exchange)
+	}
+}
+
+func(hist *UserHistory) CreateJson() ([]byte,error) {
+	return json.Marshal(hist.History)
 }
