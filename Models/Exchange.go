@@ -62,7 +62,6 @@ func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	ex.DataOut = dataOut
 
 	ex.Status = status
-
 }
 
 func(data *ExchangeData) CreateFromGRPC(dataGRPC *Types.ExchangeData){
