@@ -14,8 +14,8 @@ type GlobalConfig struct {
 }
 
 type ServiceConfig struct {
-	Host string `yaml: "host"`
-	Port int    `yaml: "port"`
+	Host string 	`yaml: "host"`
+	Port string   `yaml: "port"`
 }
 
 func InitConfig(path string) GlobalConfig {
