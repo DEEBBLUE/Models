@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"io"
 
 	"github.com/DEEBBLUE/ExProtos/api/Types"
 )
@@ -57,4 +58,7 @@ func(user *User) CreateGRPC() *Types.User{
 
 func(user *User) CreateJson() ([]byte,error){
 	return json.Marshal(user)
+}
+func(user *User) CreateFromJson(usr io.ReadCloser)(error){
+	return json.NewDecoder(usr).Decode(&user)
 }
