@@ -1,6 +1,10 @@
 package models
 
-import "github.com/DEEBBLUE/ExProtos/api/Types"
+import (
+	"encoding/json"
+
+	"github.com/DEEBBLUE/ExProtos/api/Types"
+)
 
 type User struct{
 	TgId 				int	
@@ -49,4 +53,8 @@ func(user *User) CreateGRPC() *Types.User{
 		VerifStatus: verifStatus,
 		Role: role,
 	}	
+}
+
+func(user *User) CreateJson() ([]byte,error){
+	return json.Marshal(user)
 }
