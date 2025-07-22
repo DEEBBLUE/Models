@@ -7,11 +7,12 @@ import (
 )
 
 type GlobalConfig struct {
-	DBService  	ServiceConfig 	`yaml:"dbService"`
-	ExService  	ServiceConfig 	`yaml:"exService"`
-	SsoService 	ServiceConfig 	`yaml:"ssoService"`
-	RateService	ServiceConfig 	`yaml:"rateService"`
-	ApiGetAway 	ServiceConfig 	`yaml:"ApiGetAway"`
+	DBService  		ServiceConfig 	`yaml:"dbService"`
+	ExService  		ServiceConfig 	`yaml:"exService"`
+	SsoService 		ServiceConfig 	`yaml:"ssoService"`
+	RateService		ServiceConfig 	`yaml:"rateService"`
+	StockAdapter 	ServiceConfig		`yaml:"stockAdapter"`
+	ApiGetAway 		ServiceConfig 	`yaml:"ApiGetAway"`
 }
 
 type ServiceConfig struct {
