@@ -113,8 +113,16 @@ func(curr *ExchangeCurrency) CreateGRPC() Types.ExchangeCurrency{
 			return Types.ExchangeCurrency_BTC
 		case "USDT":
 			return Types.ExchangeCurrency_USDT
+		case "SBER":
+			return Types.ExchangeCurrency_SBER
+		case "ALFA":
+			return Types.ExchangeCurrency_ALFA
+		case "TINK":
+			return Types.ExchangeCurrency_TINK
+		case "GAZ":
+			return Types.ExchangeCurrency_GAZ
 		default:
-			return Types.ExchangeCurrency_FIAT
+			return Types.ExchangeCurrency_SBP
 	}		
 }
 
