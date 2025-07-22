@@ -8,12 +8,12 @@ import (
 )
 
 type User struct{
-	TgId 				int	
-	ChatId 			int
-	OwnerId 		int
-	VerifStatus string
-	Role 				string
-	Balance 		int
+	TgId 				int 		`json:"tg_id"`
+	ChatId 			int			`json:"chat_id"`
+	OwnerId 		int			`json:"owner_id"`
+	VerifStatus string 	`json:"verif_status"`
+	Role 				string	`json:"role"`
+	Balance 		int			`json:"balance"`
 }
 
 func(user *User) CreateFromGRPC(userGRPC *Types.User) {
