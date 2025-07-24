@@ -8,9 +8,7 @@ import (
 
 type GlobalConfig struct {
 	DBService  		ServiceConfig 	`yaml:"dbService"`
-	ExProxy  			ServiceConfig 	`yaml:"exProxy"`
-	RCService 		ServiceConfig 	`yaml:"rcService"`
-	CRService 		ServiceConfig 	`yaml:"crService"`
+	ExService  		ServiceConfig 	`yaml:"exService"`
 	SsoService 		ServiceConfig 	`yaml:"ssoService"`
 	RateService		ServiceConfig 	`yaml:"rateService"`
 	StockAdapter 	ServiceConfig		`yaml:"stockAdapter"`
