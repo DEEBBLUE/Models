@@ -10,6 +10,9 @@ import (
 )
 
 type(
+	ExchangeType struct{
+		Type string `json:"type"`
+	}
 	ExchangeStatus struct{
 		Status       string						`json:"status"`
 	}
@@ -33,6 +36,7 @@ type(
 		DataOut 		 ExchangeData		`json:"data_out"`
 
 		Status 			 ExchangeStatus `json:"exchnage_status"`
+		Type 				 ExchangeType		`json:"exchange_type"`
 	}
 )
 
@@ -47,11 +51,14 @@ func(ex *Exchange) CreateJson() ([]byte,error){
 func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	var dataIn,dataOut ExchangeData
 	var status ExchangeStatus
+	var tp ExchangeType
 
 	dataIn.CreateFromGRPC(exchange.GetDataIn())
 	dataOut.CreateFromGRPC(exchange.GetDataOut())
 
 	status.CreateFromGRPC(exchange.GetStatus())
+
+	tp.CreateFromGRPC(exchange.GetType())
 
 	ex.ExchangeId = int(exchange.GetExchangeId())
 	ex.ClientId = int(exchange.GetClientId())
@@ -64,6 +71,7 @@ func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
 	ex.DataOut = dataOut
 
 	ex.Status = status
+	ex.Type = tp 
 }
 
 func(data *ExchangeData) CreateFromGRPC(dataGRPC *Types.ExchangeData){
@@ -83,6 +91,15 @@ func(stat *ExchangeStatus) CreateFromGRPC(status Types.ExchangeStatus){
 	stat.Status = status.String()
 }
 
+func(t *ExchangeType) CreateFromGRPC(tp Types.ExchangeType){
+	switch tp {
+		case Types.ExchangeType_CR:
+			t.Type = "CR"
+		case 	Types.ExchangeType_RC:
+			t.Type = "RC"
+	}
+}
+
 func(ex *Exchange) CreateGRPC() *Types.Exchange{
 	return &Types.Exchange{
 		ExchangeId: int32(ex.ExchangeId),		
@@ -96,6 +113,7 @@ func(ex *Exchange) CreateGRPC() *Types.Exchange{
 		DataOut: ex.DataOut.CreateGRPC(),
 		
 		Status: ex.Status.CreateGRPC(),
+		Type: ex.Type.CreateGRPC(),
 	}
 }
 
@@ -136,5 +154,14 @@ func(stat *ExchangeStatus) CreateGRPC() Types.ExchangeStatus{
 			return Types.ExchangeStatus_COMPELETED
 		default:
 			return Types.ExchangeStatus_CANCELED
+	}
+}
+
+func(t *ExchangeType) CreateGRPC() Types.ExchangeType{
+	switch tp {
+		case "CR":
+			return Types.ExchangeType_CR
+		case "RC"	:
+			return Types.ExchangeType_RC
 	}
 }
