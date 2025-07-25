@@ -158,10 +158,10 @@ func(stat *ExchangeStatus) CreateGRPC() Types.ExchangeStatus{
 }
 
 func(t *ExchangeType) CreateGRPC() Types.ExchangeType{
-	switch tp {
+	switch t.Type {
 		case "CR":
 			return Types.ExchangeType_CR
-		case "RC"	:
+		default:
 			return Types.ExchangeType_RC
 	}
 }
