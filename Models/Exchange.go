@@ -165,3 +165,4 @@ func(t *ExchangeType) CreateGRPC() Types.ExchangeType{
 			return Types.ExchangeType_RC
 	}
 }
+
