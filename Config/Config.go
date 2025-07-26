@@ -15,6 +15,7 @@ type GlobalConfig struct {
 	RateService		ServiceConfig 	`yaml:"rateService"`
 	StockAdapter 	ServiceConfig		`yaml:"stockAdapter"`
 	ApiGetAway 		ServiceConfig 	`yaml:"ApiGetAway"`
+	ConfService 	ServiceConfig		`yaml:"confService"`
 }
 
 type ServiceConfig struct {
