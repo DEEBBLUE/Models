@@ -1,8 +1,7 @@
 package models
 
 import (
-	"encoding/json"
-
+	easyjson "github.com/mailru/easyjson"
 	"github.com/DEEBBLUE/ExProtos/api/Types"
 )
 
@@ -28,5 +27,5 @@ func(hist *UserHistory) CreateFromGRPC(history []*Types.Exchange){
 }
 
 func(hist *UserHistory) CreateJson() ([]byte,error) {
-	return json.Marshal(hist.History)
+	return easyjson.Marshal(hist)
 }

@@ -1,12 +1,11 @@
 package models
 
 import (
-	"encoding/json"
-	"io"
 	"time"
 
 	"github.com/DEEBBLUE/ExProtos/api/Types"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	easyjson "github.com/mailru/easyjson"
 )
 
 type(
@@ -40,12 +39,12 @@ type(
 	}
 )
 
-func(ex *Exchange) CreateFromJson(exchange io.ReadCloser) (error){
-	return json.NewDecoder(exchange).Decode(&ex)
+func(ex *Exchange) CreateFromJson(exchange []byte) (error){
+	return easyjson.Unmarshal(exchange,ex) 
 }
 
 func(ex *Exchange) CreateJson() ([]byte,error){
-	return json.Marshal(ex)
+	return easyjson.Marshal(ex) 
 }
 
 func(ex *Exchange) CreateFromGRPC(exchange *Types.Exchange) {
