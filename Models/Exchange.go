@@ -128,8 +128,14 @@ func(curr *ExchangeCurrency) CreateGRPC() Types.ExchangeCurrency{
 	switch curr.Currency {
 		case "BTC":
 			return Types.ExchangeCurrency_BTC
-		case "USDT":
-			return Types.ExchangeCurrency_USDT
+		case "USDTERC20":
+			return Types.ExchangeCurrency_USDTERC20
+		case "USDTBEB20":
+			return Types.ExchangeCurrency_USDTBEB20
+		case "USDTTON":
+			return Types.ExchangeCurrency_USDTTON
+		case "USDTTRC20":
+			return Types.ExchangeCurrency_USDTTRC20
 		case "SBER":
 			return Types.ExchangeCurrency_SBER
 		case "ALFA":
