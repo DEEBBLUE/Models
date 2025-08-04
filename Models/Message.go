@@ -3,9 +3,8 @@ package models
 import "github.com/mailru/easyjson"
 
 type Message struct{
-	From 	string 	`json:"from"`
-	To 		string	`json:"to"`	
-	Msg 	string	`json:"msg"`
+	ChatId 	string 	`json:"chat_id"`
+	Msg 		string	`json:"msg"`
 }
 
 func CreateMsgFromJson(msg []byte) (*Message,error) {

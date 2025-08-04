@@ -36,10 +36,8 @@ func easyjson51ee17fDecodeGithubComDEEBBLUEModelsModels(in *jlexer.Lexer, out *M
 			continue
 		}
 		switch key {
-		case "from":
-			out.From = string(in.String())
-		case "to":
-			out.To = string(in.String())
+		case "chat_id":
+			out.ChatId = string(in.String())
 		case "msg":
 			out.Msg = string(in.String())
 		default:
@@ -57,14 +55,9 @@ func easyjson51ee17fEncodeGithubComDEEBBLUEModelsModels(out *jwriter.Writer, in 
 	first := true
 	_ = first
 	{
-		const prefix string = ",\"from\":"
+		const prefix string = ",\"chat_id\":"
 		out.RawString(prefix[1:])
-		out.String(string(in.From))
-	}
-	{
-		const prefix string = ",\"to\":"
-		out.RawString(prefix)
-		out.String(string(in.To))
+		out.String(string(in.ChatId))
 	}
 	{
 		const prefix string = ",\"msg\":"
