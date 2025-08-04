@@ -3,7 +3,7 @@ package models
 import "github.com/mailru/easyjson"
 
 type MessageList struct{
-	list []Message `json:"list"`
+	List []Message `json:"list"`
 }
 
 
